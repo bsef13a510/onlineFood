@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Add Admin";
+
+    List<SelectListItem> quests = new List<SelectListItem>();
+    quests.Add(new SelectListItem { Text = "What's your favorite food?", Value = "What's your favorite food?" });
+    quests.Add(new SelectListItem { Text = "What's your favorite color?", Value = "What's your favorite color?" });
+    quests.Add(new SelectListItem { Text = "Whose your favorite sportsman?", Value = "Whose your favorite sportsman?" });
+    quests.Add(new SelectListItem { Text = "Who was your 3rd grade fiend?", Value = "Who was your 3rd grade fiend?" });
+
+    List<SelectListItem> type = new List<SelectListItem>();
+    type.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
+}
+@model WebsiteProject.Models.User
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#regEmail").change(function () {
+                var email = $('#regEmail').val();
+                @*alert("The text has been changed.");*@
+                $.getJSON("/home/CheckUser?email=" + email, function (data) {
+                    
+                    if (data) {
+                        $('#result').text("User already exists");
+
+                    }
+                    
+                });
+            });
+        });
+</script>
+<center><h2>Add New Admin</h2></center>
+<!-- header-section-ends -->
+	<!-- content-section-starts -->
+	<div class="content">
+	<div class="main">
+	   <div class="container">
+            @using (Html.BeginForm("addAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data"})) 
+       {
+		  <div class="register">
+		  	 
+				 <div class="register-top-grid">
+					<h3>PERSONAL INFORMATION</h3>
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+						<span>@Html.Label("Name")<label>*</label></span>
+						@Html.TextBoxFor(model => model.name, null, new {   required="required", type="text"  })
+					    @Html.ValidationMessageFor(model => model.name)
+                     </div>
+					 
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <span>@Html.Label("Email Address")<label>*</label></span>
+                         <p id="result" style="color:red;"></p>
+						 @Html.TextBoxFor(model => model.email, null, new {   required="required", type="email", id="regEmail"  }) 
+					     
+                         @Html.ValidationMessageFor(model => model.email)
+                     </div>
+                     
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+					   <span>@Html.Label("Secret Question")<label>*</label></span>
+						 @Html.DropDownListFor(model => model.question, quests)
+					 </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+					   <span>@Html.Label("Answer")<label>*</label></span>
+						 @Html.TextBoxFor(model => model.answer, null, new {   required="required", type="text"  })
+                         @Html.ValidationMessageFor(model => model.answer)
+					 </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Upload your Image:</span>
+                        <input type="file" name="image" id="image" required="required" />
+                    </div>
+                     <div class="clearfix"></div>
+				     <div class="register-bottom-grid">
+						    <h3>LOGIN INFORMATION</h3>
+							 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+								<span>@Html.Label("Password")<label>*</label></span>
+						        @Html.TextBoxFor(model => model.password, null, new {   required="required", type="password"  }) 
+							    @Html.ValidationMessageFor(model => model.password)
+                             </div>
+							 <div class="wow fadeInRight" data-wow-delay="0.4s">
+								<span>@Html.Label("Type")<label>*</label></span>
+						        @Html.DropDownListFor(model => model.type, type)
+							 </div>
+					 </div>
+				
+				<div class="clearfix"> </div>
+				<div class="register-but">
+				   
+					   <input type="submit" value="Register">
+                    
+					   <div class="clearfix"> </div>
+				   
+                    </div>
+            
+				</div>
+		   </div>
+            }
+	     </div>
+	    </div>

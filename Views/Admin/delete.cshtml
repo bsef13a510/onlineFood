@@ -1,0 +1,39 @@
+﻿@model WebsiteProject.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Student</legend>
+
+    <div >
+        
+       Id:  @Model.Id
+    </div>
+    
+    <div >
+        Item name : @Model.name
+    </div>
+    
+
+    <div >
+        Item type : @Model.type
+    </div>
+
+    <div >
+        Price : @Model.price
+    </div>
+   
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+

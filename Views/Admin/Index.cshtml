@@ -1,0 +1,67 @@
+﻿@model List<WebsiteProject.Models.Product>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Index";
+}
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: center;    
+}
+</style>
+<h2><span>Admin</span></h2>
+<center>
+<p>
+
+    @Html.ActionLink("Add new Item", "addItem", "Admin")
+    @Html.ActionLink("Add new Admin", "addAdmin", "Admin")
+</p>
+<table style="width:100%">
+    <tr>
+        <th>
+           @Html.Label("Id")
+        </th>
+        <th>
+           @Html.Label("Name")
+        </th>
+        <th>
+            @Html.Label("Type")
+        </th>+
+        <th>
+           @Html.Label("Price")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @item.Id
+        </td>
+        <td>
+            @item.name
+        </td>
+        <td>
+           @item.type
+        </td>
+        <td>
+           @item.price
+        </td>
+        <td>
+
+            @Html.ActionLink("Edit", "updateItem", new { id=item.Id }) |
+            @Html.ActionLink("Details", "details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+</center>
+<div class="clearfix">
+    <p></p>
+</div>

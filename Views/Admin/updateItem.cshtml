@@ -1,0 +1,64 @@
+﻿@model WebsiteProject.Models.Product
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Update Item";
+
+    List<SelectListItem> types = new List<SelectListItem>();
+    types.Add(new SelectListItem { Text = "Pizzas", Value = "Pizzas" });
+    types.Add(new SelectListItem { Text = "Burgers", Value = "Burgers" });
+    types.Add(new SelectListItem { Text = "Desserts", Value = "Desserts" });
+    types.Add(new SelectListItem { Text = "Beverages", Value = "Beverages?" });
+    types.Add(new SelectListItem { Text = "Sandwitches", Value = "Sandwitches" });
+    types.Add(new SelectListItem { Text = "Ice Cream", Value = "Ice Cream" });
+    types.Add(new SelectListItem { Text = "Exotic Cakes", Value = "Exotic Cakes" });
+}
+
+<h2>Update/Edit Item</h2>
+
+@using (Html.BeginForm()) {
+   
+
+    <fieldset>
+        <legend>Item</legend>
+        <div>
+            @Html.LabelFor(model => model.Id)
+        </div>
+        <div>
+            @Html.HiddenFor(model => model.Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Name")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.name, new { required="required" })
+           @Html.ValidationMessageFor(model => model.name)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Type")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.type, types)
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Price")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.price, new { required="required" })
+           @Html.ValidationMessageFor(model => model.price)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
