@@ -8,13 +8,13 @@
     types.Add(new SelectListItem { Text = "Burgers", Value = "Burgers" });
     types.Add(new SelectListItem { Text = "Desserts", Value = "Desserts" });
     types.Add(new SelectListItem { Text = "Beverages", Value = "Beverages" });
-    types.Add(new SelectListItem { Text = "Sandwitches", Value = "Sandwitches" });
+    types.Add(new SelectListItem { Text = "Sandwiches", Value = "Sandwiches" });
     types.Add(new SelectListItem { Text = "Ice Cream", Value = "Ice Cream" });
     types.Add(new SelectListItem { Text = "Exotic Cakes", Value = "Exotic Cakes" });
 }
 
 <h2>Add New Item</h2>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("addItem", "Admin", FormMethod.Post, new { enctype = "multipart/form-data"})) {
    
 
     <fieldset>
@@ -42,6 +42,13 @@
         <div class="editor-field">
             @Html.TextBoxFor(model => model.price, new { required="required" })
            @Html.ValidationMessageFor(model => model.price)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Image")
+        </div>
+        <div class="editor-field">
+           <input type="file" name="image" id="image" required="required" />
         </div>
 
         <p>

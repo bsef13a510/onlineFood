@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "View Admins";
+}
+@model List<WebsiteProject.Models.User>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: center;    
+}
+</style>
+
+<center>
+<h2>Admins</h2>
+
+<table style="width:50%">
+    <tr>
+        <th>
+           @Html.Label("Name")
+        </th>
+        
+        <th>
+            @Html.Label("Image")
+        </th>
+    </tr>
+
+@foreach (var u in Model) {
+    if(u.type.Equals("Admin"))
+    {
+    <tr>
+        <td>
+            @u.name
+        </td>
+        
+        <td>
+            <img src="@Url.Content(u.image)" width="80" height="50" />
+        </td>
+    </tr>
+    }
+}
+
+</table>
+    <div class="clearfix">
+    <p></p>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+    <br /><br /><br />
+</center>
