@@ -1,0 +1,279 @@
+@model List<WebsiteProject.Models.Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Menu";
+}
+<script>
+    $(".item_add").click(function () {
+        if (Session["name"] == null) {
+            alert("First Login to order!");
+            $('#result').text("First log in to order!");
+        }
+    });
+    
+</script>
+	<!-- header-section-ends -->
+	<!-- content-section-starts -->
+	<div class="orders">
+	<div class="container">
+		<div class="order-top">
+			<li class="item-lists"><h4>Pizzas</h4>
+                @foreach (var item in Model)
+                {
+                    if (item.type.Equals("Pizzas"))
+                    {
+                        <p><img src="@Url.Content(item.image)" height="42" width="82"/>&nbsp &nbsp &nbsp @item.name</p>
+                    }
+				<!--p>Exotic Combo of Cheese & Basil</!--p>
+				<P> Capsicum, Tomatoes, Onion</P>
+				<P> Chicken Tikka & Cheese</P>
+				<P> Chicken Stripse</P-->
+                }
+			</li>
+			<li class="item-lists">
+				<div class="special-info grid_1 simpleCart_shelfItem">
+					<h4>Price</h4>
+                    @foreach (var item in Model)
+                    {
+                        if (item.type.Equals("Pizzas"))
+                        {
+					<div class="pre-top">
+						<div class="pr-left">
+							<div class="item_add"><span class="item_price"><h6>ONLY $@item.price</h6></span></div>
+						</div>
+						<div class="pr-right">
+							<div class="item_add"><span class="item_price"><a href="#" >Pick</a></span><p id="result"></p></div>
+						</div>
+							<div class="clearfix"></div>
+					</div>
+                        }
+                    }
+					
+					</div>
+				</li>
+			<div class="clearfix"></div>
+		</div>
+		<div class="order-top">
+			<li class="item-lists"><h4>Burgers</h4>
+                 @foreach (var item in Model)
+                {
+                    if (item.type.Equals("Burgers"))
+                    {
+                        <p><img src="@Url.Content(item.image)" height="42" width="82"/>&nbsp &nbsp &nbsp @item.name</p>
+                    }
+				<!--p>Vegetable Patty With Coleslaw</!--p>
+				<p>Fajita Paneer & Vegetable</p>
+				<p>Chicken Patty With Vegetable</p>
+				<p>Chicken Cut in Mexican Style</p-->
+                 }
+
+			</li>
+			<li class="item-lists">
+				<div class="special-info grid_1 simpleCart_shelfItem">
+					<h4>Price</h4>
+                    @foreach (var item in Model)
+                    {
+                        if (item.type.Equals("Burgers"))
+                        {
+					<div class="pre-top">
+						<div class="pr-left">
+							<div class="item_add"><span class="item_price"><h6>ONLY $@item.price</h6></span></div>
+						</div>
+						<div class="pr-right">
+							<div class="item_add"><span class="item_price"><a href="#">Pick</a></span></div>
+						</div>
+							<div class="clearfix"></div>
+					</div>
+                        }
+                    }
+					
+					</div>
+				</li>
+			<div class="clearfix"></div>
+		</div>
+		
+		<div class="order-top">
+			<li class="item-lists"><h4>Desserts</h4>
+                @foreach (var item in Model)
+                {
+                    if (item.type.Equals("Desserts"))
+                    {
+                        <p><img src="@Url.Content(item.image)" height="42" width="82"/>&nbsp &nbsp &nbsp @item.name</p>
+                    }
+				<!--p>(Black Forest/Truffle/Noughat)</!--p>
+				<p>Apple Pie With Ice Cream</p-->
+                }
+			</li>
+			<li class="item-lists">
+				<div class="special-info grid_1 simpleCart_shelfItem">
+					<h4>Price</h4>
+                     @foreach (var item in Model)
+                    {
+                        if (item.type.Equals("Desserts"))
+                        {
+					<div class="pre-top">
+						<div class="pr-left">
+							<div class="item_add"><span class="item_price"><h6>ONLY $@item.price</h6></span></div>
+						</div>
+						<div class="pr-right">
+							<div class="item_add"><span class="item_price"><a href="#">Pick</a></span></div>
+						</div>
+							<div class="clearfix"></div>
+					</div>
+                        }
+                     }
+					
+					
+					</div>
+				</li>
+			<div class="clearfix"></div>
+		</div>
+		<div class="order-top">
+			<li class="item-lists"><h4>Cold Beverages</h4>
+                @foreach (var item in Model)
+                {
+                    if (item.type.Equals("Beverages"))
+                    {
+                        <p><img src="@Url.Content(item.image)" height="42" width="82"/>&nbsp &nbsp &nbsp @item.name</p>
+                    }
+				<!--p>Strawberry Milk Shake</!--p>
+				<p>Chocolate Milk Shake</p-->
+                }
+			</li>
+			<li class="item-lists">
+				<div class="special-info grid_1 simpleCart_shelfItem">
+					<h4>Price</h4>
+                    @foreach (var item in Model)
+                    {
+                        if (item.type.Equals("Beverages"))
+                        {
+					<div class="pre-top">
+						<div class="pr-left">
+							<div class="item_add"><span class="item_price"><h6>ONLY $@item.price</h6></span></div>
+						</div>
+						<div class="pr-right">
+							<div class="item_add"><span class="item_price"><a href="#">Pick</a></span></div>
+						</div>
+							<div class="clearfix"></div>
+					</div>
+                        }
+                    }
+					
+					
+					</div>
+				</li>
+			<div class="clearfix"></div>
+		</div>
+		<div class="order-top">
+			<li class="item-lists"><h4>Sandwiches</h4>
+                @foreach (var item in Model)
+                {
+                    if (item.type.Equals("Sandwiches"))
+                    {
+                        <p><img src="@Url.Content(item.image)" height="42" width="82"/>&nbsp &nbsp &nbsp @item.name</p>
+                    }
+				<!--p>(Mint With Cheese Tomato)</!--p>
+				<p>(Fresh Tomatoes, Cucumber)</p-->
+                }
+			</li>
+			<li class="item-lists">
+				<div class="special-info grid_1 simpleCart_shelfItem">
+					<h4>Price</h4>
+                    @foreach (var item in Model)
+                    {
+                        if (item.type.Equals("Sandwiches"))
+                        {
+					<div class="pre-top">
+						<div class="pr-left">
+							<div class="item_add"><span class="item_price"><h6>ONLY $@item.price</h6></span></div>
+						</div>
+						<div class="pr-right">
+							<div class="item_add"><span class="item_price"><a href="#">pick</a></span></div>
+						</div>
+							<div class="clearfix"></div>
+					</div>
+                        }
+                    }
+					
+					
+					</div>
+				</li>
+			
+			<div class="clearfix"></div>
+		</div>
+		<div class="order-top">
+			<li class="item-lists"><h4>Exotic Cakes</h4>
+                @foreach (var item in Model)
+                {
+                    if (item.type.Equals("Exotic Cakes"))
+                    {
+                        <p><img src="@Url.Content(item.image)" height="42" width="82"/>&nbsp &nbsp &nbsp @item.name</p>
+                    }
+				<!--p>Pineapple Flavoured Cream)</!--p>
+				<p>A Chocolate Sponge Base</p-->
+                }
+			</li>
+			<li class="item-lists">
+				<div class="special-info grid_1 simpleCart_shelfItem">
+					<h4>Price</h4>
+                    @foreach (var item in Model)
+                    {
+                        if (item.type.Equals("Exotic Cakes"))
+                        {
+					<div class="pre-top">
+						<div class="pr-left">
+							<div class="item_add"><span class="item_price"><h6>ONLY $@item.price</h6></span></div>
+						</div>
+						<div class="pr-right">
+							<div class="item_add"><span class="item_price"><a href="#">pick</a></span></div>
+						</div>
+							<div class="clearfix"></div>
+					</div>
+                        }
+                    }
+					
+					</div>
+				</li>
+			
+			<div class="clearfix"></div>
+		</div><br /><div class="order-top">
+			<li class="item-lists"><h4>Ice Creams</h4>
+                @foreach (var item in Model)
+                {
+                    if (item.type.Equals("Ice Cream"))
+                    {
+                        <p><img src="@Url.Content(item.image)" height="42" width="82"/>&nbsp &nbsp &nbsp @item.name</p>
+                    }
+				<!--p>Butter Scotch</!--p>
+				<p>Pineapple</p>
+				<p>Black Forest</p>
+				<p>Chocolate with Orange</p-->
+                }
+			</li>
+			<li class="item-lists">
+				<div class="special-info grid_1 simpleCart_shelfItem">
+					<h4>Price</h4>
+                    @foreach (var item in Model)
+                    {
+                        if (item.type.Equals("Ice Cream"))
+                        {
+					<div class="pre-top">
+						<div class="pr-left">
+							<div class="item_add"><span class="item_price"><h6>ONLY $@item.price</h6></span></div>
+						</div>
+						<div class="pr-right">
+							<div class="item_add"><span class="item_price"><a href="#">pick</a></span></div>
+						</div>
+							<div class="clearfix"></div>
+					</div>
+                        }
+                    }
+					
+					</div>
+				</li>
+			
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+	

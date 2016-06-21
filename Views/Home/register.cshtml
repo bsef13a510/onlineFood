@@ -1,0 +1,205 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Registration";
+    List<SelectListItem> quests = new List<SelectListItem>();
+    quests.Add(new SelectListItem{Text="What's your favorite food?", Value="What's your favorite food?"});
+    quests.Add(new SelectListItem{Text="What's your favorite color?", Value="What's your favorite color?"});
+    quests.Add(new SelectListItem{Text="Whose your favorite sportsman?", Value="Whose your favorite sportsman?"});
+    quests.Add(new SelectListItem{Text="Who was your 3rd grade fiend?", Value="Who was your 3rd grade fiend?"});
+    
+    List<SelectListItem> type = new List<SelectListItem>();
+    type.Add(new SelectListItem{Text="Customer", Value="Customer"});
+    type.Add(new SelectListItem{Text="Admin", Value="Admin"});
+}
+@model WebsiteProject.Models.User
+
+<!--script-- type="text/javascript">
+        
+            $(window).load(function () {
+
+                $("#flexiselDemo3").flexisel({
+                    visibleItems: 3,
+                    animationSpeed: 1000,
+                    autoPlay: false,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+
+            });
+            </1--script-->
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#email").change(function () {
+
+            var email = $('#email').val();
+
+            $.getJSON("/home/CheckUser?email=" + email, function (data) {
+
+                if (data) {
+                    $('#result').text("User already exists");
+                }
+                else {
+                    $('#result').text("Valid");
+                }
+
+            });
+        });
+    });
+</script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/jquery.flexisel.js")"></script>
+	<!-- header-section-ends -->
+	<!-- content-section-starts -->
+	<div class="content">
+	<div class="main">
+	   <div class="container">
+            @using (Html.BeginForm("register", "Home", FormMethod.Post, new { enctype = "multipart/form-data"})) 
+       {
+		  <div class="register">
+		  	 
+				 <div class="register-top-grid">
+					<h3>PERSONAL INFORMATION</h3>
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+						<span>@Html.Label("Name")<label>*</label></span>
+						@Html.TextBoxFor(model => model.name, null, new {   required="required", type="text"  })
+					    @Html.ValidationMessageFor(model => model.name)
+                     </div>
+					 
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <span>@Html.Label("Email Address")<label>*</label></span>
+                         <p id="result" style="color:red;"></p>
+						 @Html.TextBoxFor(model => model.email, null, new {   required="required", type="email"  }) 
+					     
+                         @Html.ValidationMessageFor(model => model.email)
+                     </div>
+                     
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+					   <span>@Html.Label("Secret Question")<label>*</label></span>
+						 @Html.DropDownListFor(model => model.question, quests)
+					 </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+					   <span>@Html.Label("Answer")<label>*</label></span>
+						 @Html.TextBoxFor(model => model.answer, null, new {   required="required", type="text"  })
+                         @Html.ValidationMessageFor(model => model.answer)
+					 </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Upload your Image:</span>
+                        <input type="file" name="image" id="image" required="required" />
+                    </div>
+                     <div class="clearfix"></div>
+				     <div class="register-bottom-grid">
+						    <h3>LOGIN INFORMATION</h3>
+							 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+								<span>@Html.Label("Password")<label>*</label></span>
+						        @Html.TextBoxFor(model => model.password, null, new {   required="required", type="password"  }) 
+							    @Html.ValidationMessageFor(model => model.password)
+                             </div>
+							 <div class="wow fadeInRight" data-wow-delay="0.4s">
+								<span>@Html.Label("Type")<label>*</label></span>
+						        @Html.DropDownListFor(model => model.type, type)
+							 </div>
+					 </div>
+				
+				<div class="clearfix"> </div>
+				<div class="register-but">
+				   
+					   <input type="submit" value="Register" id="b1">
+                    
+					   <div class="clearfix"> </div>
+				   
+                    </div>
+            
+				</div>
+		   </div>
+            }
+	     </div>
+	    </div>
+<div class="special-offers-section">
+			<div class="container">
+				<div class="special-offers-section-head text-center dotted-line">
+					<h4>Special Offers</h4>
+				</div>
+				<div class="special-offers-section-grids">
+				 <div class="m_3"><span class="middle-dotted-line"> </span> </div>
+				   <div class="container">
+					  <ul id="flexiselDemo3">
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="@Url.Content("~/Content/images/p1.jpg")" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Olister Combo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Grab It">
+									<span></span>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="@Url.Content("~/Content/images/p2.jpg")" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Chicken Jumbo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Grab It">
+									<span></span>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="@Url.Content("~/Content/images/p3.jpg")" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Crab Combo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Grab It">
+									<span></span>
+								</div>
+								
+								<div class="clearfix"></div>
+								</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="@Url.Content("~/Content/images/p2.jpg")" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Chicken Jumbo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Grab It">
+									<span></span>
+								</div>
+								
+								<div class="clearfix"></div>
+								</div>
+					    </li>
+					 </ul>
+				 
+				</div>
+			</div>
+		</div>
+		</div>

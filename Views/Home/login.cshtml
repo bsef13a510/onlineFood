@@ -1,0 +1,137 @@
+@model WebsiteProject.Models.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#email").change(function () {
+
+            var email = $('#email').val();
+            $.getJSON("/home/CheckUser?email=" + email, function (data) {
+
+                if (data) {
+                    $('#result').text("Valid user");
+                }
+                else {
+                    $('#result').text("User doesn't exist");
+                }
+            });
+        });
+    });
+</script>
+	<!-- header-section-ends -->
+	<!-- content-section-starts -->
+	<div class="content">
+	<div class="container">
+		<div class="login-page">
+			    <div class="dreamcrub">
+			   	 
+                <div class="clearfix"></div>
+			   </div>
+			   <div class="account_grid">
+			   <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+			  	 <h3>NEW CUSTOMERS</h3>
+				 <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+				 <a class="acount-btn" href="@Url.Content("~/Home/register")">Create an Account</a>
+			   </div>
+			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+			  	<h3>REGISTERED CUSTOMERS</h3>
+				<p>If you have an account with us, please log in.</p>
+                   @using (Html.BeginForm("login", "Home", FormMethod.Post, new { enctype = "multipart/form-data"}))
+                   {
+				
+				  <div>
+					<span>@Html.Label("Email Address")<label>*</label></span>
+					 @Html.TextBoxFor(model => model.email, null, new {   required="required", type="email", id="email"  }) 
+					 @Html.ValidationMessageFor(model => model.email)
+                      <p id="result" style="color:red;"></p> 
+				  </div>
+				  <div>
+					<span>@Html.Label("Password")<label>*</label></span>
+					@Html.TextBoxFor(model => model.password, null, new {   required="required", type="password"  }) 
+					@Html.ValidationMessageFor(model => model.password) 
+				  </div>
+				  <a class="forgot" href="@Url.Content("~/Home/forgotPassword")">Forgot Your Password?</a>
+				  <input type="submit" value="Login">
+			    
+                   }
+			   </div>	
+			   <div class="clearfix"> </div>
+			 </div>
+		   </div>
+</div>
+<div class="special-offers-section">
+			<div class="container">
+				<div class="special-offers-section-head text-center dotted-line">
+					<h4>Special Offers</h4>
+				</div>
+				<div class="special-offers-section-grids">
+				 <div class="m_3"><span class="middle-dotted-line"> </span> </div>
+				   <div class="container">
+					  <ul id="flexiselDemo3">
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="@Url.Content("~/Content/images/p1.jpg")" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Olister Combo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Grab It">
+									<span></span>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="@Url.Content("~/Content/images/p2.jpg")" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Chicken Jumbo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Grab It">
+									<span></span>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="@Url.Content("~/Content/images/p3.jpg")" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Crab Combo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Grab It">
+									<span></span>
+								</div>
+								
+								<div class="clearfix"></div>
+								</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="@Url.Content("~/Content/images/p2.jpg")" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Chicken Jumbo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Grab It">
+									<span></span>
+								</div>
+								
+								<div class="clearfix"></div>
+								</div>
+					    </li>
+					 </ul>
+				 
+				</div>
+			</div>
+		</div>
+		</div>
